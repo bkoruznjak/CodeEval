@@ -23,7 +23,7 @@ import java.io.IOException;
  */
 public class TrickOrTreat {
 
-    //change to true before commit on CodeEval
+    //change to false before commit on CodeEval
     private static final boolean TESTING = true;
     private final int VAMPIRE = 3;
     private final int ZOMBIE = 4;
