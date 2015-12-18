@@ -35,61 +35,61 @@ public class Testing {
         }
         new ChallengeSolver().solveChallenge(challengePath);
     }
-}
 
-/**
- * Class that extends the Template and overrides the doWork method to fit your
- * challenge needs
- *
- * @author bkoruznjak
- */
-class ChallengeSolver extends Template {
+    /**
+     * Class that extends the Template and overrides the doWork method to fit
+     * your challenge needs
+     *
+     * @author bkoruznjak
+     */
+    private static class ChallengeSolver extends Template {
 
-    /*
+        /*
     'Low' - 2 or fewer bugs; 
     'Medium' - 4 or fewer bugs; 
     'High' - 6 or fewer bugs; 
     'Critical' - more than 6 bugs; 
     'Done' - all is done; 
-     */
-    @Override
-    public void doWork(String textLine) {
-        String[] data = textLine.split(" \\| ");
-        int errorCounter = 0;
-        for (int index = 0; index < data[0].length(); index++) {
-            if (data[0].charAt(index) != data[1].charAt(index)) {
-                errorCounter++;
+         */
+        @Override
+        public void doWork(String textLine) {
+            String[] data = textLine.split(" \\| ");
+            int errorCounter = 0;
+            for (int index = 0; index < data[0].length(); index++) {
+                if (data[0].charAt(index) != data[1].charAt(index)) {
+                    errorCounter++;
+                }
             }
-        }
-        if (errorCounter == 0) {
-            System.out.println("Done");
-        } else if (errorCounter <= 2) {
-            System.out.println("Low");
-        } else if (errorCounter <= 4) {
-            System.out.println("Medium");
-        } else if (errorCounter <= 6) {
-            System.out.println("High");
-        } else if (errorCounter > 6) {
-            System.out.println("Critical");
-        }
-    }
-}
-
-class Template {
-
-    public void solveChallenge(File challenge) {
-        try (BufferedReader breader = new BufferedReader(new FileReader(challenge))) {
-            String textLine = null;
-            while ((textLine = breader.readLine()) != null) {
-                doWork(textLine);
+            if (errorCounter == 0) {
+                System.out.println("Done");
+            } else if (errorCounter <= 2) {
+                System.out.println("Low");
+            } else if (errorCounter <= 4) {
+                System.out.println("Medium");
+            } else if (errorCounter <= 6) {
+                System.out.println("High");
+            } else if (errorCounter > 6) {
+                System.out.println("Critical");
             }
-        } catch (IOException ioEx) {
-            ioEx.printStackTrace();
         }
     }
 
-    //Override this method in challenge solver to fit your challenge needs
-    public void doWork(String textLine) {
-        System.out.println(textLine);
+    private static class Template {
+
+        public void solveChallenge(File challenge) {
+            try (BufferedReader breader = new BufferedReader(new FileReader(challenge))) {
+                String textLine = null;
+                while ((textLine = breader.readLine()) != null) {
+                    doWork(textLine);
+                }
+            } catch (IOException ioEx) {
+                ioEx.printStackTrace();
+            }
+        }
+
+        //Override this method in challenge solver to fit your challenge needs
+        public void doWork(String textLine) {
+            System.out.println(textLine);
+        }
     }
 }
