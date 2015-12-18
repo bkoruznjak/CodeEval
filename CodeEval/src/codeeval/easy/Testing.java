@@ -1,7 +1,12 @@
 /*
- * This is a template file that you can use to build your challenges on
+In many teams, there is a person who tests a project, finds bugs and errors, 
+and prioritizes them. Now, you have the unique opportunity to try yourself as 
+a tester and test a product. Here, you have two strings - the first one is 
+provided by developers, and the second one is mentioned in design. You have to 
+find and count the number of bugs, and also prioritize them for fixing using 
+the following statuses: 'Low', 'Medium', 'High', 'Critical' or 'Done'.
  */
-package codeeval;
+package codeeval.easy;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +17,7 @@ import java.io.IOException;
  *
  * @author bkoruznjak
  */
-public class Main {
+public class Testing {
 
     private static File challengePath;
     //change this to your test file path
@@ -40,12 +45,33 @@ public class Main {
  */
 class ChallengeSolver extends Template {
 
+    /*
+    'Low' - 2 or fewer bugs; 
+    'Medium' - 4 or fewer bugs; 
+    'High' - 6 or fewer bugs; 
+    'Critical' - more than 6 bugs; 
+    'Done' - all is done; 
+     */
     @Override
     public void doWork(String textLine) {
-        System.out.println(textLine);
         String[] data = textLine.split(" \\| ");
-        System.out.println(data[0]);
-        System.out.println(data[1]);
+        int errorCounter = 0;
+        for (int index = 0; index < data[0].length(); index++) {
+            if (data[0].charAt(index) != data[1].charAt(index)) {
+                errorCounter++;
+            }
+        }
+        if (errorCounter == 0) {
+            System.out.println("Done");
+        } else if (errorCounter <= 2) {
+            System.out.println("Low");
+        } else if (errorCounter <= 4) {
+            System.out.println("Medium");
+        } else if (errorCounter <= 6) {
+            System.out.println("High");
+        } else if (errorCounter > 6) {
+            System.out.println("Critical");
+        }
     }
 }
 
